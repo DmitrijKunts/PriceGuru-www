@@ -18,7 +18,7 @@
                                         Текущий релиз
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                        Версия {{ $release->version }}
+                                        Версия {{ $release->version ?? ''}}
                                     </p>
                                 </div>
                                 <div class="border-t border-gray-200">
@@ -28,7 +28,7 @@
                                                 Версия
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $release->version }}
+                                                {{ $release->version ?? ''}}
                                             </dd>
                                         </div>
                                         <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -36,7 +36,7 @@
                                                 Дата выпуска
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $release->created_at }}
+                                                {{ $release->created_at ?? ''}}
                                             </dd>
                                         </div>
 
@@ -45,7 +45,7 @@
                                                 Примечание
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $release->description }}
+                                                {{ $release->description ?? ''}}
                                             </dd>
                                         </div>
                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
