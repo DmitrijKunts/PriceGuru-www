@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('lastrelease', function (){
+    $r = \App\Models\Release::select(['version', 'file_inst as url'])->orderBy('version', 'desc')->first();
+    $r->url = config('app.url') . Storage::url($r->url);
+    return $r;
+});
+

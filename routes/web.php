@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReleaseController;
+use App\Http\Controllers\LicenseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $release = \App\Models\Release::orderBy('created_at', 'desc')->first();
+    return view('welcome', compact('release'));
+})->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/get-fee-license', [LicenseController::class, 'make_free'])->name('lic_make_free');
 
 Route::resource('releases', ReleaseController::class);
 Route::resource('releases.comments', CommentController::class);
