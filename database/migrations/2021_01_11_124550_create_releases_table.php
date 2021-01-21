@@ -16,7 +16,7 @@ class CreateReleasesTable extends Migration
         Schema::create('releases', function (Blueprint $table) {
             $table->id();
             $table->integer('version');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('file_inst');
             $table->string('file_arc');
             $table->timestamps();
