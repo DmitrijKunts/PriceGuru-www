@@ -47,7 +47,6 @@ class ReleaseController extends Controller
         //dd($request->file_inst);
         $validate = $request->validate([
             'version' => 'required|digits_between:1,999999',
-            'description' => 'string',
             'file_inst' => 'required|file|max:99999999',
             'file_arc' => 'required|file|max:99999999',
         ]);
