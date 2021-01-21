@@ -15,4 +15,10 @@ class Release extends Model
         'file_inst',
         'file_arc',
     ];
+
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d.m.Y', strtotime($value));
+    }
 }
