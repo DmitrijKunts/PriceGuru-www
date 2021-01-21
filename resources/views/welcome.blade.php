@@ -8,16 +8,21 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <img class="mx-auto mb-5" src="{{ url('/imgs/screenshot-main.png') }}"
+                 alt="Программа Price-Guru предназначена для обработки прайс-листов сформированных в MS Excel'е">
+
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            <p>Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в <b>MS
-                                    Excel</b>'е.
+                            <p>Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в MS
+                                Excel'е.</p>
                         </h3>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                        <p>Возможности программы:</p>
+                            Возможности программы:
                         </p>
                     </div>
                     <div class="border-t border-gray-200">
@@ -36,7 +41,8 @@
                         </div>
                         <div class="bg-white-50 px-4 py-5 sm:gap-4 sm:px-6">
                             Мониторинг цен по каждой организации: измененные цены по отношению к предыдущему прайсу,
-                            новые позиции по отношению к предыдущему прайсу, исчезнувшие позиции по отношению к следующему прайсу.
+                            новые позиции по отношению к предыдущему прайсу, исчезнувшие позиции по отношению к
+                            следующему прайсу.
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:gap-4 sm:px-6">
                             Поиск наилучшей цены по определенной позиции по всем внесенным организациям. Идентификация
