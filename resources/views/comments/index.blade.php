@@ -1,4 +1,5 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="mx-auto mt-5 text-lg leading-6 font-medium text-gray-900">{{ __('Comments') }}</div>
+
 <div class="flex flex-col pt-6">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -76,6 +77,6 @@
 
 <div class="block mb-8 mt-4">
     <a href="{{ route('releases.comments.create', $release) }}"
-       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">{{ __('Add comments') }}</a>
+       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">{{ __('Add comment') }}</a>
 </div>
 
