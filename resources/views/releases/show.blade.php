@@ -100,6 +100,12 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mx-auto mt-5 text-lg leading-6 font-medium text-gray-900">{{ __('Comments') }}</div>
+
+            @include('comments.index')
         </div>
     </div>
+
+
 </x-app-layout>

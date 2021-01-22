@@ -18,9 +18,9 @@
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            <p>Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в
+                            Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в
                                 <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/Microsoft_Excel">MS Excel'е</a> или
-                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/OpenOffice_Calc">OpenOffice Calc</a>.</p>
+                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/OpenOffice_Calc">OpenOffice Calc</a>.
                         </h3>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
                             Возможности программы:

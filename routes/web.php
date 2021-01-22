@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReleaseCommentController;
 use App\Http\Controllers\ReleaseController;
 use App\Http\Controllers\LicenseController;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +27,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/get-fee-license', [LicenseController::class, 'make_free'])->name('lic_make_free');
 
-Route::resource('releases', ReleaseController::class);
-Route::resource('releases.comments', CommentController::class);
+
+Route::resource('releases', ReleaseController::class)->only([
+    'index', 'create', 'store', 'show', 'destroy', 'edit'
+]);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('releases/{release}/comments/create', [ReleaseCommentController::class, 'create'])->name('releases.comments.create');
+Route::resource('releases.comments', ReleaseCommentController::class)->only([
+    'store', 'edit', 'update', 'destroy',
+])->shallow();

@@ -13,6 +13,13 @@
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
                             Версия {{ $release->version }}
                         </p>
+                        @if(count($release->comments)>0)
+                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                <a class="font-medium text-indigo-600 hover:text-indigo-500"
+                                   href="{{ route('releases.show', $release) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
+
+                            </p>
+                        @endif
                     </div>
                     <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                         <a href="{{ route('dashboard') }}"
@@ -138,6 +145,7 @@
                                 </ul>
                             </dd>
                         </div>
+
                     </dl>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use \App\Models\ReleaseComment;
 
 class Release extends Model
 {
@@ -32,5 +33,10 @@ class Release extends Model
     public function getCreatedAtAttribute($value)
     {
         return date('d.m.Y', strtotime($value));
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ReleaseComment::class)->orderBy('created_at', 'desc');
     }
 }
