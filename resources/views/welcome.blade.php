@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Price-Guru
+            Price-Guru - анализа прайсов
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <img class="mx-auto mb-5" src="{{ url('/imgs/screenshot-main.png') }}"
-                 alt="Программа Price-Guru предназначена для обработки прайс-листов сформированных в MS Excel'е">
+                 alt="Программа Price-Guru предназначена для обработки прайс-листов сформированных в MS Excel'е или OpenOffice Calc">
 
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -18,8 +18,9 @@
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            <p>Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в MS
-                                Excel'е.</p>
+                            <p>Программа <b>Price-Guru</b> предназначена для обработки прайс-листов сформированных в
+                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/Microsoft_Excel">MS Excel'е</a> или
+                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/OpenOffice_Calc">OpenOffice Calc</a>.</p>
                         </h3>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
                             Возможности программы:
