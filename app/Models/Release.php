@@ -37,6 +37,6 @@ class Release extends Model
 
     public function comments()
     {
-        return $this->hasMany(ReleaseComment::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(ReleaseComment::class)->orderBy('created_at', 'asc');
     }
 }

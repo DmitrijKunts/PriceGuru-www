@@ -70,9 +70,9 @@
                                         @can('release-master')
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <a href="{{ route('releases.show', $release->id) }}"
-                                                   class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Обзор</a>
+                                                   class="text-blue-600 hover:text-blue-900 mb-2 mr-2">{{ __('Show') }}</a>
                                                 <a href="{{ route('releases.edit', $release->id) }}"
-                                                   class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Редактировать</a>
+                                                   class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">{{ __('Edit') }}</a>
                                                 <form class="inline-block"
                                                       action="{{ route('releases.destroy', $release->id) }}"
                                                       method="POST"
@@ -81,7 +81,7 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="submit"
                                                            class="text-red-600 hover:text-red-900 mb-2 mr-2"
-                                                           value="Удалить">
+                                                           value="{{ __('Delete') }}">
                                                 </form>
                                             </td>
                                         @endcan

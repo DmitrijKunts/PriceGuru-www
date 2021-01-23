@@ -17,10 +17,19 @@
     "Date": "Дата",
     "Comment": "Комментарий",
     "Drop": "Удалить",
-    "Add comment": "Добавить комментарий",
+    "Add comment": "Оставить комментарий",
     "New comment": "Новый комментарий",
     "Comments": "Комментарии",
     "Add": "Добавить",
+    "New release": "Новый релиз",
+    "Version": "Версия",
+    "Description": "Описание",
+    "Installation file": "Установочный файл",
+    "Zip-file": "Zip-файл",
+    "Save": "Сохранить",
+    "Show": "Обзор",
+    "Edit": "Редактировать",
+    "Delete": "Удалить",
 
     "OLLLLLLLLLLLD": "Имя"
 }

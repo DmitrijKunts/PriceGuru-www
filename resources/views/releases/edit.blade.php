@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Release') }}
+            {{ __('Edit Release') }}
         </h2>
     </x-slot>
 
@@ -10,41 +10,42 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
 
                 <x-jet-section-title>
-                    <x-slot name="title">{{ __('New release') }}</x-slot>
+                    <x-slot name="title">{{ __('Edit release') }}</x-slot>
                     <x-slot name="description"></x-slot>
                 </x-jet-section-title>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form method="post" action="{{ route('releases.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('releases.update', $release) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div>
                             <x-jet-label for="version" value="{{ __('Version') }}"/>
                             <x-jet-input id="version" class="block mt-1 w-full" type="text" name="version" required
-                                         autocomplete="version" autofocus/>
+                                         autocomplete="version" autofocus value="{{ old('version', $release->version) }}" />
                             <x-jet-input-error for="version" class="mt-2"/>
                         </div>
                         <div>
                             <x-jet-label for="description" value="{{ __('Description') }}"/>
-                            <textarea id="description" name="description" required
-                                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"></textarea>
+                            <textarea id="description" name="description"
+                                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">{{ old('description', $release->description) }}</textarea>
                             <x-jet-input-error for="description" class="mt-2"/>
                         </div>
                         <div>
                             <x-jet-label for="file_inst" value="{{ __('Installation file') }}"/>
-                            <x-jet-input id="file_inst" class="block mt-1 w-full" type="file" name="file_inst" required
+                            <x-jet-input id="file_inst" class="block mt-1 w-full" type="file" name="file_inst"
                                          autocomplete="file_inst"/>
                             <x-jet-input-error for="file_inst" class="mt-2"/>
                         </div>
                         <div>
                             <x-jet-label for="file_arc" value="{{ __('Zip-file') }}"/>
-                            <x-jet-input id="file_arc" class="block mt-1 w-full" type="file" name="file_arc" required
+                            <x-jet-input id="file_arc" class="block mt-1 w-full" type="file" name="file_arc"
                                          autocomplete="file_arc"/>
                             <x-jet-input-error for="file_arc" class="mt-2"/>
                         </div>
 
                         <div class="flex justify-end mt-4">
                             <x-jet-button class="ml-4">
-                                {{ __('Add') }}
+                                {{ __('Save') }}
                             </x-jet-button>
                         </div>
 

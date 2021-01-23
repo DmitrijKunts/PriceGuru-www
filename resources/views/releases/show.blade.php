@@ -11,13 +11,35 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                    <div class="px-4 py-5 sm:px-6">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            Информация о резелизе
-                        </h3>
-                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                            Версия {{ $release->version }}
-                        </p>
+                    <div class="flex">
+                        <div class="flex-1 px-4 py-5 sm:px-6 inline-block">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                Информация о резелизе
+                            </h3>
+                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                Версия {{ $release->version }}
+                            </p>
+                        </div>
+                        @can('release-master')
+                            <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                                <a href="{{ route('releases.edit', $release->id) }}"
+                                   class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                                    {{ __('Edit') }}
+                                </a>
+                            </div>
+                            <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                                <form class="inline-block"
+                                      action="{{ route('releases.destroy', $release->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Are you sure?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="submit"
+                                           class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                                           value="{{ __('Delete') }}">
+                                </form>
+                            </div>
+                        @endcan
                     </div>
                     <div class="border-t border-gray-200">
                         <dl>
@@ -100,7 +122,6 @@
                     </div>
                 </div>
             </div>
-
 
 
             @include('comments.index')

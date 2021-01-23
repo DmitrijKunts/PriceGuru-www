@@ -47,6 +47,7 @@ class ReleaseController extends Controller
         //dd($request->file_inst);
         $validate = $request->validate([
             'version' => 'required|digits_between:1,999999',
+            'description' => '',
             'file_inst' => 'required|file|max:99999999',
             'file_arc' => 'required|file|max:99999999',
         ]);
@@ -83,7 +84,9 @@ class ReleaseController extends Controller
      */
     public function edit(Release $release)
     {
-        //
+        abort_if(Gate::denies('release-master'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('releases.edit', compact('release'));
     }
 
     /**
@@ -95,7 +98,31 @@ class ReleaseController extends Controller
      */
     public function update(Request $request, Release $release)
     {
-        //
+        if (!Gate::allows('release-master')) {
+            abort(403);
+        }
+
+        $validate = $request->validate([
+            'version' => 'required|digits_between:1,999999',
+            'description' => '',
+            'file_inst' => 'file|max:99999999',
+            'file_arc' => 'file|max:99999999',
+        ]);
+        //dd($validate);
+
+        if (isset($validate['file_inst'])) {
+            $file_inst = $request->file_inst->storeAs('file_inst', $request->file_inst->getClientOriginalName());
+            $validate['file_inst'] = $file_inst;
+        }
+
+        if (isset($validate['file_arc'])) {
+            $file_arc = $request->file_arc->storeAs('file_arc', $request->file_arc->getClientOriginalName());
+            $validate['file_arc'] = $file_arc;
+        }
+
+        $release->update($validate);
+
+        return redirect()->route('releases.show', compact('release'));
     }
 
     /**

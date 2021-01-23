@@ -14,11 +14,27 @@
                             Версия {{ $release->version }}
                         </p>
                         @if(count($release->comments)>0)
-                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            <div class="inline-flex mt-1 max-w-2xl text-sm text-gray-500">
+                                <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                     fill="currentColor" aria-hidden="true">
+                                    <path d="M17.211,3.39H2.788c-0.22,0-0.4,0.18-0.4,0.4v9.614c0,0.221,0.181,0.402,0.4,0.402h3.206v2.402c0,0.363,0.429,0.533,0.683,0.285l2.72-2.688h7.814c0.221,0,0.401-0.182,0.401-0.402V3.79C17.612,3.569,17.432,3.39,17.211,3.39M16.811,13.004H9.232c-0.106,0-0.206,0.043-0.282,0.117L6.795,15.25v-1.846c0-0.219-0.18-0.4-0.401-0.4H3.189V4.19h13.622V13.004z"></path>
+                                </svg>
                                 <a class="font-medium text-indigo-600 hover:text-indigo-500"
                                    href="{{ route('releases.show', $release) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
 
-                            </p>
+                            </div>
+                        @else
+                            <div class="inline-flex mt-1 max-w-2xl text-sm text-gray-500">
+                                <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                     fill="currentColor" aria-hidden="true">
+                                    <path d="M18.303,4.742l-1.454-1.455c-0.171-0.171-0.475-0.171-0.646,0l-3.061,3.064H2.019c-0.251,0-0.457,0.205-0.457,0.456v9.578c0,0.251,0.206,0.456,0.457,0.456h13.683c0.252,0,0.457-0.205,0.457-0.456V7.533l2.144-2.146C18.481,5.208,18.483,4.917,18.303,4.742 M15.258,15.929H2.476V7.263h9.754L9.695,9.792c-0.057,0.057-0.101,0.13-0.119,0.212L9.18,11.36h-3.98c-0.251,0-0.457,0.205-0.457,0.456c0,0.253,0.205,0.456,0.457,0.456h4.336c0.023,0,0.899,0.02,1.498-0.127c0.312-0.077,0.55-0.137,0.55-0.137c0.08-0.018,0.155-0.059,0.212-0.118l3.463-3.443V15.929z M11.241,11.156l-1.078,0.267l0.267-1.076l6.097-6.091l0.808,0.808L11.241,11.156z"></path>
+                                </svg>
+                                <a class="font-medium text-indigo-600 hover:text-indigo-500"
+                                   href="{{ route('releases.comments.create', $release) }}">{{ __('Add comment') }}</a>
+
+                            </div>
                         @endif
                     </div>
                     <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
