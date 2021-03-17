@@ -24,3 +24,6 @@ Route::get('lastrelease', function (){
     return $r;
 });
 
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
