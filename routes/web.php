@@ -34,3 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('releases/{release}/comment
 Route::resource('releases.comments', ReleaseCommentController::class)->only([
     'store', 'edit', 'update', 'destroy',
 ])->shallow();
+
+
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
