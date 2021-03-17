@@ -15,6 +15,9 @@
                         <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             <span class="block">Готовы к бесплатному тесту?</span>
                             <span class="block text-indigo-600">Лицензия на 7 дней для работы на полных оборотах.</span>
+                            <span class="block text-gray-500 text-sm font-normal">* Ограничение незарегистрированной версии лишь в том, что при запуске программы открывается окно
+		с предложением зарегистрироваться, нет возможности добавлять новые организации если 3 уже добавлены.
+		Но если ранее, при активной лицензии, были добавлены нужные Вам организации, то они будут использоваться программой без ограничений.</span>
                         </h2>
                         <div class="mt-8 lex lg:mt-0 lg:flex-shrink-0">
                             <div class="inline-flex rounded-md shadow">

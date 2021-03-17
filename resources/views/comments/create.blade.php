@@ -23,7 +23,7 @@
                         <div>
                             <x-jet-label for="message" value="{{ __('Comment') }}"/>
                             <textarea id="message" name="message" required
-                                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"></textarea>
+                                      class="h-40 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"></textarea>
                             <x-jet-input-error for="message" class="mt-2"/>
                         </div>
 
