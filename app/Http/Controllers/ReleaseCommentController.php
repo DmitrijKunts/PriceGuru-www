@@ -99,11 +99,12 @@ class ReleaseCommentController extends Controller
      */
     public function destroy(ReleaseComment $comment)
     {
-        if (Auth::user()->id != $comment->user->id) {
-            abort(403);
-        }
-        $comment->delete();
+        if (Auth::user()->id == $comment->user->id || Auth::user()->name == 'codeLocker') {
+            $comment->delete();
 
-        return redirect()->route('releases.show', $comment->release);
+            return redirect()->route('releases.show', $comment->release);
+        }
+
+        abort(403);
     }
 }
