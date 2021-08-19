@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Price-Guru - анализа прайсов
+            Price-Guru - анализа и обработка прайсов
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <img class="mx-auto mb-5" src="{{ url('/imgs/screenshot-main.png') }}"
-                 alt="Программа Price-Guru предназначена для обработки прайс-листов сформированных в MS Excel'е или OpenOffice Calc">
+                 alt="Программа Price-Guru предназначена для обработки прайс-листов поставщиков сформированных в MS Excel'е или OpenOffice Calc">
 
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
