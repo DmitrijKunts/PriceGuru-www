@@ -10,10 +10,13 @@ use App\Models\User;
 class UserTable extends DataTableComponent
 {
 
+    public string $defaultSortColumn = 'created_at';
+    public string $defaultSortDirection = 'desc';
+
     public function columns(): array
     {
         return [
-            Column::make('Имя')
+            Column::make('Имя', 'name')
                 ->sortable()
                 ->searchable(),
             Column::make('E-mail', 'email')
