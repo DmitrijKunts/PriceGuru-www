@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('release-master', function (User $user) {
             return $user->id == 1;
         });
+
+        Gate::define('users-admin', function (User $user) {
+            return $user->id == 1;
+        });
     }
 }
