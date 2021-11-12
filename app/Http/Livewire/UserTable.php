@@ -13,14 +13,14 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Name')
+            Column::make('Имя')
                 ->sortable()
                 ->searchable(),
             Column::make('E-mail', 'email')
                 ->sortable()
                 ->searchable(),
-            // Column::make('Verified', 'email_verified_at')
-            //     ->sortable(),
+            Column::make('Дата регистрации', 'created_at')
+                ->sortable(),
         ];
     }
 
