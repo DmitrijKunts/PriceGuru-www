@@ -13,6 +13,8 @@ class UserTable extends DataTableComponent
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
+    public $showConfirmation = false;
+
     public function columns(): array
     {
         return [
@@ -32,8 +34,36 @@ class UserTable extends DataTableComponent
         return User::query();
     }
 
-    // public function rowView(): string
-    // {
-    //     return 'livewire-tables.rows.user_table';
-    // }
+    public function bulkActions(): array
+    {
+
+        return [
+            'deleteSelected'   => "Удалить",
+        ];
+    }
+
+    public function closeConfirmation()
+    {
+        $this->showConfirmation = false;
+    }
+
+    public function deleteSelected()
+    {
+        if (count($this->selectedKeys)) {
+            $this->showConfirmation = true;
+            // User::whereIn('id',$this->selectedKeys)->delete();
+        }
+    }
+    public function delete()
+    {
+        if (count($this->selectedKeys)) {
+            User::whereIn('id', $this->selectedKeys)->delete();
+            $this->showConfirmation = false;
+        }
+    }
+
+    public function rowView(): string
+    {
+        return 'livewire-tables.rows.user_table';
+    }
 }
