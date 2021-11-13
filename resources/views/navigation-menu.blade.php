@@ -154,7 +154,7 @@
                                     @csrf
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                                        this.closest('form').submit();">
                                         {{ __('Logout') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -188,6 +188,13 @@
                     {{ __('Dashboard') }}
                 </x-jet-responsive-nav-link>
             </div>
+            @can('users-admin')
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                        Пользователи
+                    </x-jet-responsive-nav-link>
+                </div>
+            @endcan
         @endauth
 
         <div class="pt-2 pb-3 space-y-1">
@@ -245,7 +252,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                            this.closest('form').submit();">
                             {{ __('Logout') }}
                         </x-jet-responsive-nav-link>
                     </form>
