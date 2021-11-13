@@ -9,17 +9,19 @@ class DlgDeleteConfirm extends ModalComponent
 {
     public $parentName;
     public $data;
+    public $bulk;
 
-    public function mount($parentName, $data)
+    public function mount($parentName, $data, $bulk)
     {
         $this->parentName = $parentName;
         $this->data = $data;
+        $this->bulk = $bulk;
     }
 
     public function confirmed()
     {
         $this->closeModalWithEvents([
-            $this->parentName => ['confirmedDelete', [$this->data]],
+            $this->parentName => ['confirmedDelete', [$this->bulk, $this->data]],
         ]);
     }
 

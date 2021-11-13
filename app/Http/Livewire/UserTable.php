@@ -45,10 +45,11 @@ class UserTable extends DataTableComponent
     }
 
 
-    public function confirmedDelete($data)
+    public function confirmedDelete($bulk, $data)
     {
         $this->authorize('users-admin');
         User::whereIn('id', $data)->delete();
+        if ($bulk) $this->resetAll();
     }
 
     public function updateUser($user)
@@ -66,7 +67,8 @@ class UserTable extends DataTableComponent
                 'dlg-delete-confirm',
                 [
                     'parentName' => $this->getName(),
-                    'data' => $this->selectedKeys
+                    'data' => $this->selectedKeys,
+                    'bulk' => true
                 ]
             );
         }
