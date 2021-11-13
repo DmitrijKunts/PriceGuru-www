@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UserTable extends DataTableComponent
 {
+    use AuthorizesRequests;
 
     public string $defaultSortColumn = 'created_at';
     public string $defaultSortDirection = 'desc';
 
-    public $showConfirmation = false;
+    protected $listeners = ['confirmedDelete', 'updateUser'];
 
     public function columns(): array
     {
@@ -26,6 +28,7 @@ class UserTable extends DataTableComponent
                 ->searchable(),
             Column::make('Дата регистрации', 'created_at')
                 ->sortable(),
+            Column::make('Действия'),
         ];
     }
 
@@ -36,29 +39,36 @@ class UserTable extends DataTableComponent
 
     public function bulkActions(): array
     {
-
         return [
             'deleteSelected'   => "Удалить",
         ];
     }
 
-    public function closeConfirmation()
+
+    public function confirmedDelete($data)
     {
-        $this->showConfirmation = false;
+        $this->authorize('users-admin');
+        User::whereIn('id', $data)->delete();
     }
 
-    public function deleteSelected()
+    public function updateUser($user)
     {
-        if (count($this->selectedKeys)) {
-            $this->showConfirmation = true;
-            // User::whereIn('id',$this->selectedKeys)->delete();
-        }
+        $this->authorize('users-admin');
+        User::find($user['id'])->update($user);
     }
-    public function delete()
+
+
+    public function deleteSelected($id = null)
     {
-        if (count($this->selectedKeys)) {
-            User::whereIn('id', $this->selectedKeys)->delete();
-            $this->showConfirmation = false;
+        if ($id || count($this->selectedKeys)) {
+            $this->emit(
+                'openModal',
+                'dlg-delete-confirm',
+                [
+                    'parentName' => $this->getName(),
+                    'data' => $this->selectedKeys
+                ]
+            );
         }
     }
 
