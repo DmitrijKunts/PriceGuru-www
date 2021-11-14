@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LicDownloadHistory;
 use App\Models\Release;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class LicenseController extends Controller
 
     public function make_free()
     {
-        if (!Auth::check()){
+        if (!Auth::check()) {
             return Response::deny();
         }
         $version = Release::orderBy('version', 'desc')->first()->version;
@@ -33,6 +34,11 @@ class LicenseController extends Controller
             $res .= strlen($t) == 1 ? "0$t" : $t;
         }
         $res = strtoupper($res);
+
+        LicDownloadHistory::create([
+            'user_id' => Auth::id(),
+            'date' => now()
+        ]);
 
         return response($res, 200)
             ->header('Content-Type', 'text/plain')

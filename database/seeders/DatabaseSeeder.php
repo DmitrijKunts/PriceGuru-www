@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Release;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,5 +26,17 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->count(50)
             ->create();
+
+        Release::create([
+            'version' => '1',
+            'description' => 'First release',
+            'created_at' => now(),
+            'file_inst' => 'file_inst/PGInstall-1.exe',
+            'file_arc' => 'file_arc/PGArc-1.zip',
+        ]);
+
+        $this->call([
+            LicDownloadHistorySeeder::class,
+        ]);
     }
 }

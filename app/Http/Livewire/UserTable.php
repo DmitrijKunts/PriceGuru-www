@@ -28,13 +28,16 @@ class UserTable extends DataTableComponent
                 ->searchable(),
             Column::make('Дата регистрации', 'created_at')
                 ->sortable(),
+            Column::make('Скачиваний', 'lic_download_histories_count')
+                ->sortable(),
             Column::make('Действия'),
         ];
     }
 
     public function query(): Builder
     {
-        return User::query();
+        // dd(User::withCount('licDownloadHistories')->toSql());
+        return User::withCount('licDownloadHistories');
     }
 
     public function bulkActions(): array
