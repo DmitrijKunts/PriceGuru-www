@@ -17,6 +17,7 @@
                     Видеоуроки
                 </h2>
                 <dl class="mt-6 space-y-6 divide-y divide-gray-200">
+
                     <div class="pt-6">
                         <dt class="text-lg">
 
@@ -37,7 +38,7 @@
                         </dt>
                         <dd class="mt-2 pr-12" id="faq-0">
                             <div class="aspect-w-16 aspect-h-9">
-                                <object data="//www.youtube.com/embed/Zr5ZR11mQnI"></object>
+                                <object class="lozad" data-data="//www.youtube.com/embed/Zr5ZR11mQnI"></object>
                             </div>
                         </dd>
                     </div>
