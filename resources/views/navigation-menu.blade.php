@@ -38,6 +38,12 @@
                     </x-jet-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                        Обратная связь
+                    </x-jet-nav-link>
+                </div>
+
             </div>
 
             @guest
@@ -213,6 +219,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('videos') }}" :active="request()->routeIs('videos')">
                 Видео работы с программой
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                Обратная связь
             </x-jet-responsive-nav-link>
         </div>
         @guest

@@ -24,7 +24,7 @@
                             <button type="button" class="text-left w-full flex justify-between items-start text-gray-400"
                                 aria-controls="faq-0" aria-expanded="false">
                                 <span class="font-medium text-gray-900">
-                                    1. Загрузка и установка программы Price-guru
+                                    1. Загрузка и установка программы
                                 </span>
                                 <span class="ml-6 h-7 flex items-center">
 

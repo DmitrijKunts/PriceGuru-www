@@ -2,6 +2,7 @@
 
 return [
 
+    'contactAddress' => env('MAIL_CONTACT_ADDRESS', 'admin@admin.com'),
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
