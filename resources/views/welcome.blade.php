@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <img class="mx-auto mb-5" src="{{ url('/imgs/screenshot-main.png') }}"
-                 alt="Программа Price-Guru предназначена для обработки прайс-листов поставщиков сформированных в MS Excel'е или OpenOffice Calc">
+                alt="Программа Price-Guru предназначена для обработки прайс-листов поставщиков сформированных в MS Excel'е или OpenOffice Calc">
 
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -18,9 +18,12 @@
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 sm:px-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            Программа <b>Price-Guru</b> предназначена для анализа и обработки прайс-листов поставщиков сформированных в
-                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/Microsoft_Excel">MS Excel'е</a> или
-                                <a itemscope itemtype="https://schema.org/Brand" target="_blank" href="https://ru.wikipedia.org/wiki/OpenOffice_Calc">OpenOffice Calc</a>.
+                            Программа <b>Price-Guru</b> предназначена для анализа и обработки прайс-листов поставщиков
+                            сформированных в
+                            <a itemscope itemtype="https://schema.org/Brand" target="_blank"
+                                href="https://ru.wikipedia.org/wiki/Microsoft_Excel">MS Excel'е</a> или
+                            <a itemscope itemtype="https://schema.org/Brand" target="_blank"
+                                href="https://ru.wikipedia.org/wiki/OpenOffice_Calc">OpenOffice Calc</a>.
                         </h3>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
                             Возможности программы:
@@ -72,8 +75,31 @@
     </div>
 
 
-    @if($release)
+    @if ($release)
         @include('releases.card')
     @endif
+
+    <div class="px-12 pb-12">
+        <div class="rounded-md bg-blue-50 p-4 ">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <!-- Heroicon name: solid/information-circle -->
+                    <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                        fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3 flex-1 md:flex md:justify-between">
+                    <p class="text-sm text-blue-700">
+                        Ограничение незарегистрированной версии лишь в том, что нет возможности добавлять новые
+                        организации если 3 уже добавлены. Но если ранее, при активной лицензии, были добавлены нужные
+                        Вам организации, то они будут использоваться программой без ограничений.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </x-app-layout>
