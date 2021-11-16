@@ -4,6 +4,7 @@ use App\Http\Controllers\ReleaseCommentController;
 use App\Http\Controllers\ReleaseController;
 use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 Route::resource('releases', ReleaseController::class);
+
+Route::get('/videos', VideoController::class)->name('videos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('releases/{release}/comments/create', [ReleaseCommentController::class, 'create'])->name('releases.comments.create');
 Route::resource('releases.comments', ReleaseCommentController::class)->only([

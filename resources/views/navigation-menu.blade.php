@@ -32,6 +32,12 @@
                     </x-jet-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('videos') }}" :active="request()->routeIs('videos')">
+                        Видео работы с программой
+                    </x-jet-nav-link>
+                </div>
+
             </div>
 
             @guest
@@ -154,7 +160,7 @@
                                     @csrf
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
+                                                                this.closest('form').submit();">
                                         {{ __('Logout') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -201,6 +207,12 @@
             <x-jet-responsive-nav-link href="{{ route('releases.index') }}"
                 :active="request()->routeIs('dashboard')">
                 {{ __('Releases') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('videos') }}" :active="request()->routeIs('videos')">
+                Видео работы с программой
             </x-jet-responsive-nav-link>
         </div>
         @guest
@@ -252,7 +264,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            this.closest('form').submit();">
+                                                    this.closest('form').submit();">
                             {{ __('Logout') }}
                         </x-jet-responsive-nav-link>
                     </form>
