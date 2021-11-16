@@ -6,5 +6,6 @@
             "database": "${workspaceFolder:price-guru}/database.sqlite",
             "name": "database.sqlite"
         }
-    ]
+    ],
+    "sqltools.useNodeRuntime": true
 }

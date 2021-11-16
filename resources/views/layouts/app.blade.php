@@ -37,11 +37,7 @@
                 {{ $slot }}
             </main>
 
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-gray-500">
-                    Copyright © 2021 All rights reserved.
-                </div>
-            </header>
+            @include('footer')
         </div>
 
         @stack('modals')
