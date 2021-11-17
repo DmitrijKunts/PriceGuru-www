@@ -6,6 +6,7 @@ use App\Models\Release;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 class ReleaseController extends Controller
@@ -46,8 +47,8 @@ class ReleaseController extends Controller
         }
         //dd($request->file_inst);
         $validate = $request->validate([
-            'version' => 'required|digits_between:1,999999',
-            'description' => '',
+            'version' => 'required|digits_between:1,999999|unique:releases',
+            'description' => 'required',
             'file_inst' => 'required|file|max:99999999',
             'file_arc' => 'required|file|max:99999999',
         ]);
@@ -106,12 +107,12 @@ class ReleaseController extends Controller
         }
 
         $validate = $request->validate([
-            'version' => 'required|digits_between:1,999999',
-            'description' => '',
+            'version' => ['required', 'digits_between:1,999999', Rule::unique('releases')->ignore($release->id)],
+            'description' => 'required',
             'file_inst' => 'file|max:99999999',
             'file_arc' => 'file|max:99999999',
         ]);
-        //dd($validate);
+        // dd($validate);
 
         if (isset($validate['file_inst'])) {
             $file_inst = $request->file_inst->storeAs('file_inst', $request->file_inst->getClientOriginalName());

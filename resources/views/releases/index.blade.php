@@ -52,26 +52,26 @@
                                     @endif
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            <a href="{{ route('releases.show', $release->id) }}"
+                                            <a href="{{ route('releases.show', $release->version) }}"
                                                class="text-blue-600 hover:text-blue-900 mb-2 mr-2">
                                                 {{ $release->created_at }}
                                             </a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            <a href="{{ route('releases.show', $release->id) }}"
+                                            <a href="{{ route('releases.show', $release->version) }}"
                                                class="text-blue-600 hover:text-blue-900 mb-2 mr-2">
                                                 {{ $release->version }}
                                             </a>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $release->description }}
+                                            {!! nl2br($release->description) !!}
                                         </td>
                                         @can('release-master')
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <a href="{{ route('releases.show', $release->id) }}"
+                                                <a href="{{ route('releases.show', $release->version) }}"
                                                    class="text-blue-600 hover:text-blue-900 mb-2 mr-2">{{ __('Show') }}</a>
-                                                <a href="{{ route('releases.edit', $release->id) }}"
+                                                <a href="{{ route('releases.edit', $release->version) }}"
                                                    class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">{{ __('Edit') }}</a>
                                                 <form class="inline-block"
                                                       action="{{ route('releases.destroy', $release->id) }}"
