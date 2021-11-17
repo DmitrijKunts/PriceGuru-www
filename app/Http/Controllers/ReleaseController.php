@@ -71,8 +71,11 @@ class ReleaseController extends Controller
      * @param \App\Models\Release $release
      * @return \Illuminate\Http\Response
      */
-    public function show(Release $release)
+    public function show($version)
     {
+        $release = Release::where('version', $version)
+            ->latest()
+            ->first();
         return view('releases.show', compact('release'));
     }
 
