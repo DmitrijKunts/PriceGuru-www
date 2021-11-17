@@ -23,7 +23,7 @@
 <body class="font-sans antialiased">
 
     <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+        {{-- @livewire('navigation-menu') --}}
 
         <!-- Page Heading -->
         <header class="bg-white shadow">
