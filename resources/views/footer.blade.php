@@ -43,7 +43,7 @@
                 </svg>
             </a>
 
-            <a target="_blank" href="https://t.me/price_guru_soft" class="text-indigo-400 hover:text-indigo-500">
+            <a target="_blank" href="https://t.me/price_guru" class="text-indigo-400 hover:text-indigo-500">
                 <span class="sr-only">Telegram-канал программы Price-Guru</span>
                 <svg class="h-12 w-12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                     <path
