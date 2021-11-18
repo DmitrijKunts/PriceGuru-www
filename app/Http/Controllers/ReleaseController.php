@@ -54,7 +54,8 @@ class ReleaseController extends Controller
         ]);
 
 
-        $file_inst = $request->file_inst->storeAs('file_inst', $request->file_inst->getClientOriginalName());
+        // $file_inst = $request->file_inst->storeAs('file_inst', $request->file_inst->getClientOriginalName());
+        $file_inst = Storage::putFileAs('file_inst', $request->file('file_inst'), $request->file('file_inst')->getClientOriginalName());
         $validate['file_inst'] = $file_inst;
 
         //$ext = $request->file_arc->extension() ?? '.exe';
@@ -75,6 +76,7 @@ class ReleaseController extends Controller
     public function show($version)
     {
         $release = Release::where('version', $version)->first();
+        if (!$release) abort(404);
         return view('releases.show', compact('release'));
     }
 
@@ -89,6 +91,7 @@ class ReleaseController extends Controller
         abort_if(Gate::denies('release-master'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $release = Release::where('version', $version)->first();
+        if (!$release) abort(404);
         return view('releases.edit', compact('release'));
     }
 
@@ -105,6 +108,8 @@ class ReleaseController extends Controller
             abort(403);
         }
 
+        $release = Release::where('version', $version)->first();
+        if (!$release) abort(404);
         $validate = $request->validate([
             'version' => ['required', 'digits_between:1,999999', Rule::unique('releases')->ignore($release->id)],
             'description' => 'required',
@@ -123,10 +128,9 @@ class ReleaseController extends Controller
             $validate['file_arc'] = $file_arc;
         }
 
-        $release = Release::where('version', $version)->first();
         $release->update($validate);
 
-        return redirect()->route('releases.show', compact('release'));
+        return redirect()->route('releases.show', $release->version);
     }
 
     /**
@@ -140,9 +144,8 @@ class ReleaseController extends Controller
         abort_if(Gate::denies('release-master'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $release = Release::where('version', $version)->first();
+        if (!$release) abort(404);
         Storage::delete([$release->file_inst, $release->file_arc]);
-        // if ($release->file_inst ?? null && Storage::exists($release->file_inst)) Storage::delete($release->file_inst);
-        // if ($release->file_arc ?? null && Storage::exists($release->file_arc)) Storage::delete($release->file_arc);
         $release->delete();
 
         return redirect()->route('releases.index');
