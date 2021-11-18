@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Релиз, версия {{ $release->version }}
-        </h2>
-    </x-slot>
+    <x-slot name="header">Релиз, версия {{ $release->version }}</x-slot>
     <x-slot name="title">Версия {{ $release->version }}</x-slot>
 
     <div class="py-12">
@@ -29,7 +25,7 @@
                             </div>
                             <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                                 <form class="inline-block"
-                                      action="{{ route('releases.destroy', $release->id) }}"
+                                      action="{{ route('releases.destroy', $release->version) }}"
                                       method="POST"
                                       onsubmit="return confirm('Are you sure?');">
                                     <input type="hidden" name="_method" value="DELETE">

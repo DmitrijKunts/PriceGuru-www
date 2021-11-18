@@ -76,7 +76,7 @@
 </div>
 
 <div class="block mb-8 mt-4">
-    <a href="{{ route('releases.comments.create', $release) }}"
+    <a href="{{ route('releases.comments.create', $release->version) }}"
        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">{{ __('Add comment') }}</a>
 </div>
 

@@ -20,6 +20,7 @@ class Release extends Model
 
     static public function humanSize($file)
     {
+        if (!Storage::exists($file)) return 0;
         $bytes = Storage::size($file);
         $units = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
 

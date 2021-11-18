@@ -17,8 +17,8 @@ class ReleaseCommentController extends Controller
      */
     public function index(Release $release)
     {
-        dd($release);
-        return '111';
+        // dd($release);
+        // return '111';
     }
 
     /**
@@ -26,12 +26,13 @@ class ReleaseCommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Release $release)
+    public function create($version)
     {
         if (!Auth::check()) {
             abort(403);
         }
         $user_id = Auth::user()->id;
+        $release = Release::where('version', $version)->first();
         return view('comments.create', compact('release', 'user_id'));
     }
 
@@ -52,9 +53,9 @@ class ReleaseCommentController extends Controller
             'release_id' => 'required|integer',
         ]);
 
-        ReleaseComment::create($validate);
+        $c = ReleaseComment::create($validate);
 
-        return redirect()->route('releases.show', [$validate['release_id']]);
+        return redirect()->route('releases.show', [$c->release->version]);
     }
 
     /**
@@ -102,7 +103,7 @@ class ReleaseCommentController extends Controller
         if (Auth::user()->id == $comment->user->id || Auth::user()->name == 'codeLocker') {
             $comment->delete();
 
-            return redirect()->route('releases.show', $comment->release);
+            return redirect()->route('releases.show', $comment->release->version);
         }
 
         abort(403);

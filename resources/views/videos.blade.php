@@ -1,11 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Видео приемов обработки</x-slot>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Скринкасты обработки прайсов
-        </h2>
-    </x-slot>
+    <x-slot name="header">Скринкасты обработки прайсов</x-slot>
 
 
 

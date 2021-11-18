@@ -1,5 +1,8 @@
 <div class="bg-white px-4 overflow-hidden sm:px-6 lg:px-8">
 
+    <x-slot name="meta_robots">
+        <meta name="robots" content="noindex, nofollow">
+    </x-slot>
 
 
     <div class="relative max-w-xl mx-auto">
@@ -28,9 +31,9 @@
 
 
         <div class="text-center">
-            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 Обратная свзять
-            </h2>
+            </h1>
             <p class="mt-4 text-lg leading-6 text-gray-500">
                 Если у есть вопрос или предложение, то Вы можете передать его через форму расположенную ниже.
             </p>

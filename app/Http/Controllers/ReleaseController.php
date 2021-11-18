@@ -74,9 +74,7 @@ class ReleaseController extends Controller
      */
     public function show($version)
     {
-        $release = Release::where('version', $version)
-            ->latest()
-            ->first();
+        $release = Release::where('version', $version)->first();
         return view('releases.show', compact('release'));
     }
 
@@ -86,10 +84,11 @@ class ReleaseController extends Controller
      * @param \App\Models\Release $release
      * @return \Illuminate\Http\Response
      */
-    public function edit(Release $release)
+    public function edit($version)
     {
         abort_if(Gate::denies('release-master'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $release = Release::where('version', $version)->first();
         return view('releases.edit', compact('release'));
     }
 
@@ -100,7 +99,7 @@ class ReleaseController extends Controller
      * @param \App\Models\Release $release
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Release $release)
+    public function update(Request $request, $version)
     {
         if (!Gate::allows('release-master')) {
             abort(403);
@@ -124,6 +123,7 @@ class ReleaseController extends Controller
             $validate['file_arc'] = $file_arc;
         }
 
+        $release = Release::where('version', $version)->first();
         $release->update($validate);
 
         return redirect()->route('releases.show', compact('release'));
@@ -135,11 +135,14 @@ class ReleaseController extends Controller
      * @param \App\Models\Release $release
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Release $release)
+    public function destroy($version)
     {
         abort_if(Gate::denies('release-master'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $release = Release::where('version', $version)->first();
         Storage::delete([$release->file_inst, $release->file_arc]);
+        // if ($release->file_inst ?? null && Storage::exists($release->file_inst)) Storage::delete($release->file_inst);
+        // if ($release->file_arc ?? null && Storage::exists($release->file_arc)) Storage::delete($release->file_arc);
         $release->delete();
 
         return redirect()->route('releases.index');

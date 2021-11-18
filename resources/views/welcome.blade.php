@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Price-Guru - анализа и обработка прайсов
-        </h2>
-    </x-slot>
+    <x-slot name="header">Price-Guru - анализа и обработка прайсов</x-slot>
 
 
     <div class="py-12">

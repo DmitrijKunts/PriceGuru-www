@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Релизы
-        </h2>
-    </x-slot>
+    <x-slot name="header">Релизы</x-slot>
     <x-slot name="title">Релизы</x-slot>
 
     <div>
@@ -74,7 +70,7 @@
                                                 <a href="{{ route('releases.edit', $release->version) }}"
                                                    class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">{{ __('Edit') }}</a>
                                                 <form class="inline-block"
-                                                      action="{{ route('releases.destroy', $release->id) }}"
+                                                      action="{{ route('releases.destroy', $release->version) }}"
                                                       method="POST"
                                                       onsubmit="return confirm('Are you sure?');">
                                                     <input type="hidden" name="_method" value="DELETE">
