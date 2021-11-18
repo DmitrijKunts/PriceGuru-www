@@ -48,6 +48,12 @@
                         </div>
                     @endcan
                     <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                        <a href="{{ route('releases.show', $release->version) }}"
+                            class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-green-700">
+                            Описание версии
+                        </a>
+                    </div>
+                    <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                         <a href="{{ route('dashboard') }}"
                             class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                             {{ __('Get license') }}

@@ -14,6 +14,7 @@ use Tests\TestCase;
 class ReleaseTest extends TestCase
 {
     use RefreshDatabase;
+
     private $data = [
         'version' => 20,
         'description' => 'First version update',
@@ -35,8 +36,9 @@ class ReleaseTest extends TestCase
 
     public function test_create_user()
     {
-        $user = User::factory()->create();
-        $user = User::factory()->create();
+        $user = User::factory()->make(['id' => 2]);
+        // dd($user);
+        // $user = User::factory()->create();
         $response = $this->actingAs($user, 'web')->get(route('releases.create'));
 
         $response->assertForbidden();
