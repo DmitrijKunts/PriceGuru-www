@@ -10,7 +10,7 @@
                     <x-slot name="description"></x-slot>
                 </x-jet-section-title>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form method="post" action="{{ route('releases.update', $release) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('releases.update', $release->version) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

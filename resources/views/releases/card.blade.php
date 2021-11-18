@@ -22,7 +22,7 @@
                                     </path>
                                 </svg>
                                 <a class="font-medium text-indigo-600 hover:text-indigo-500"
-                                    href="{{ route('releases.show', $release) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
+                                    href="{{ route('releases.show', $release->version) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
 
                             </div>
                         @else

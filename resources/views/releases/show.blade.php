@@ -18,7 +18,7 @@
                         </div>
                         @can('release-master')
                             <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                                <a href="{{ route('releases.edit', $release->id) }}"
+                                <a href="{{ route('releases.edit', $release->version) }}"
                                    class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                                     {{ __('Edit') }}
                                 </a>
