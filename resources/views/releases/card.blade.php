@@ -34,7 +34,7 @@
                                     </path>
                                 </svg>
                                 <a class="font-medium text-indigo-600 hover:text-indigo-500"
-                                    href="{{ route('releases.comments.create', $release) }}">{{ __('Add comment') }}</a>
+                                    href="{{ route('releases.comments.create', $release->version) }}">{{ __('Add comment') }}</a>
 
                             </div>
                         @endif
