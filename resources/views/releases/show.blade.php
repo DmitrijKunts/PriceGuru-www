@@ -16,27 +16,26 @@
                                 Версия {{ $release->version }}
                             </p>
                         </div>
-                        @can('release-master')
-                            <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                                <a href="{{ route('releases.edit', $release->version) }}"
-                                   class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
-                                    {{ __('Edit') }}
-                                </a>
-                            </div>
-                            <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                                <form class="inline-block"
-                                      action="{{ route('releases.destroy', $release->version) }}"
-                                      method="POST"
-                                      onsubmit="return confirm('Are you sure?');">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit"
-                                           class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                                           value="{{ __('Delete') }}">
-                                </form>
-                            </div>
-                        @endcan
+
                     </div>
+                    @can('release-master')
+                        <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                            <a href="{{ route('releases.edit', $release->version) }}"
+                                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                                {{ __('Edit') }}
+                            </a>
+                        </div>
+                        <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                            <form class="inline-block" action="{{ route('releases.destroy', $release->version) }}"
+                                method="POST" onsubmit="return confirm('Are you sure?');">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit"
+                                    class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                                    value="{{ __('Delete') }}">
+                            </form>
+                        </div>
+                    @endcan
                     <div class="border-t border-gray-200">
                         <dl>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -74,18 +73,18 @@
                                             <div class="w-0 flex-1 flex items-center">
                                                 <!-- Heroicon name: paper-clip -->
                                                 <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
-                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                     fill="currentColor" aria-hidden="true">
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                    fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd"
-                                                          d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                                          clip-rule="evenodd"/>
+                                                        d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                                 <span
                                                     class="ml-2 flex-1 w-0 truncate">{{ basename($release->file_inst) }}</span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
                                                 <a href="{{ Storage::url($release->file_inst) }}"
-                                                   class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                    class="font-medium text-indigo-600 hover:text-indigo-500">
                                                     Загрузить
                                                 </a>
                                             </div>
@@ -94,18 +93,18 @@
                                             <div class="w-0 flex-1 flex items-center">
                                                 <!-- Heroicon name: paper-clip -->
                                                 <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
-                                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                     fill="currentColor" aria-hidden="true">
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                    fill="currentColor" aria-hidden="true">
                                                     <path fill-rule="evenodd"
-                                                          d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                                          clip-rule="evenodd"/>
+                                                        d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                                 <span
                                                     class="ml-2 flex-1 w-0 truncate">{{ basename($release->file_arc) }}</span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
                                                 <a href="{{ Storage::url($release->file_arc) }}"
-                                                   class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                    class="font-medium text-indigo-600 hover:text-indigo-500">
                                                     Загрузить
                                                 </a>
                                             </div>
