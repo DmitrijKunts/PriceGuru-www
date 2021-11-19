@@ -24,7 +24,9 @@ class LicenseController extends Controller
         $version = Release::orderBy('version', 'desc')->first()->version;
         $date_s = date("d.m.Y");
         $date_e = date("d.m.Y", mktime(0, 0, 0, date("m"), date("d") + 7, date("Y")));
-        $lic = "Price-Guru version $version. Registration key!\n" . Auth::user()->name . " <" . Auth::user()->email . ">\n" . $date_e . "\nEndIdentyData";
+        $owner = Auth::user()->name . " <" . Auth::user()->email . ">\n";
+        $crc = 'CRC=' . base64_encode($version . $owner) . "\n";
+        $lic = "Price-Guru version $version. Registration key!\n" . $owner . $date_e . "\n" . $crc . "EndIdentyData";
         $lic = base64_encode($lic);
         $lic = gzcompress($lic, 9);
 
@@ -40,8 +42,9 @@ class LicenseController extends Controller
             'date' => now()
         ]);
 
+        $date_s2 = date("Y.m.d-");
         return response($res, 200)
             ->header('Content-Type', 'text/plain')
-            ->header('Content-Disposition', ' attachment; filename="' . Auth::user()->email . '_v' . $version . '_' . $date_s . '_' . $date_e . '.txt"');
+            ->header('Content-Disposition', ' attachment; filename="' . $date_s2 . Auth::user()->email . '_v' . $version . '_' . $date_s . '_' . $date_e . '.txt"');
     }
 }
