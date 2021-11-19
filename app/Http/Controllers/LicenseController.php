@@ -6,7 +6,7 @@ use App\Models\LicDownloadHistory;
 use App\Models\Release;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
 
 class LicenseController extends Controller
 {
@@ -41,6 +41,12 @@ class LicenseController extends Controller
             'user_id' => Auth::id(),
             'date' => now()
         ]);
+
+        Mail::send('mail.lic_order', ['user' => Auth::user()], function ($message) {
+            $message->from(Auth::user()->email);
+            $message->to(config('mail.contactAddress', "admin@admin.net"))
+                ->subject('Заказана новая лицензия на сайте Price-Guru', Auth::user()->email);
+        });
 
         $date_s2 = date("Y.m.d-");
         return response($res, 200)
