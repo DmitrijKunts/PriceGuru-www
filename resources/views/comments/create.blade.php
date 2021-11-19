@@ -7,7 +7,9 @@
 
                 <x-jet-section-title>
                     <x-slot name="title">{{ __('New comment') }}</x-slot>
-                    <x-slot name="description">{{ __('Version') . ': ' . $release->version . '. ' . __('Description') . ': '. $release->description }}</x-slot>
+                    <x-slot name="description">
+                        {{ __('Version') . ': ' . $release->version . '. ' . __('Description') . ': ' . nl2br($release->description) }}
+                    </x-slot>
                 </x-jet-section-title>
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form method="post" action="{{ route('releases.comments.store', $release) }}">
@@ -17,10 +19,10 @@
                         <input type="hidden" name="release_id" value="{{ $release->id }}">
 
                         <div>
-                            <x-jet-label for="message" value="{{ __('Comment') }}"/>
+                            <x-jet-label for="message" value="{{ __('Comment') }}" />
                             <textarea id="message" name="message" required
-                                      class="h-40 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"></textarea>
-                            <x-jet-input-error for="message" class="mt-2"/>
+                                class="h-40 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"></textarea>
+                            <x-jet-input-error for="message" class="mt-2" />
                         </div>
 
 
