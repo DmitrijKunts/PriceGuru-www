@@ -8,7 +8,7 @@
                 <x-jet-section-title>
                     <x-slot name="title">{{ __('New comment') }}</x-slot>
                     <x-slot name="description">
-                        {{ __('Version') . ': ' . $release->version . '. ' . __('Description') . ': ' . nl2br($release->description) }}
+                        {!! __('Version') . ': ' . $release->version . '. ' . __('Description') . ': <br>' . nl2br($release->description) !!}
                     </x-slot>
                 </x-jet-section-title>
                 <div class="mt-5 md:mt-0 md:col-span-2">
