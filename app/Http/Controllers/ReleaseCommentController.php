@@ -7,6 +7,7 @@ use App\Models\ReleaseComment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReleaseCommentController extends Controller
 {
@@ -54,6 +55,16 @@ class ReleaseCommentController extends Controller
         ]);
 
         $c = ReleaseComment::create($validate);
+
+        $validate['content'] = $validate['message'];
+        unset($validate['message']);
+        $validate['c'] = $c;
+        $validate['url'] = route('releases.show', [$c->release->version]);
+        Mail::send('mail.new_comment', $validate, function ($message) use($c) {
+            $message->from(Auth::user()->email);
+            $message->to(config('mail.contactAddress', "admin@admin.net"))
+            ->subject('Новый комментарий на сайте Price-Guru', $c->user->name);
+        });
 
         return redirect()->route('releases.show', [$c->release->version]);
     }
