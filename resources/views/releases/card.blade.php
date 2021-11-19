@@ -3,8 +3,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                <div class="flex">
-
+                <div class="flex flex-col">
 
                     <div class="flex-1 px-4 py-5 sm:px-6 inline-block">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -39,27 +38,31 @@
                             </div>
                         @endif
                     </div>
+                </div>
+
+                <div class="flex flex-wrap">
                     @can('release-master')
-                        <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                        <div class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                             <a href="{{ route('releases.edit', $release->version) }}"
-                                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-green-700">
+                                class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-green-700">
                                 Редактировать
                             </a>
                         </div>
                     @endcan
-                    <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                    <div class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                         <a href="{{ route('releases.show', $release->version) }}"
-                            class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-green-700">
+                            class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-green-700">
                             Описание версии
                         </a>
                     </div>
-                    <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
+                    <div class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
                         <a href="{{ route('dashboard') }}"
-                            class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                            class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                             {{ __('Get license') }}
                         </a>
                     </div>
                 </div>
+
                 <div class="border-t border-gray-200">
                     <dl>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
