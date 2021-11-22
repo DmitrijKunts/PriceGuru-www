@@ -49,7 +49,7 @@
                                 <div class="text-sm text-gray-900">{{ $comment->created_at }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $comment->message }}</div>
+                                <div class="text-sm text-gray-900">{!! nl2br($comment->message) !!}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 @can('release-master')
