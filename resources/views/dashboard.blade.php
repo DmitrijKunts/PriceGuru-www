@@ -11,7 +11,7 @@
                         class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
                         <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             <span class="block">Готовы к бесплатному тесту?</span>
-                            <span class="block text-indigo-600">Лицензия на 7 дней для работы на полных оборотах.</span>
+                            <span class="block text-indigo-600">Лицензия на 28 дней для работы на полных оборотах.</span>
                             <span class="block text-gray-500 text-sm font-normal">* Ограничение незарегистрированной
                                 версии лишь в том, что нет возможности добавлять новые организации если 3 уже добавлены.
                                 Но если ранее, при активной лицензии, были добавлены нужные Вам организации, то они

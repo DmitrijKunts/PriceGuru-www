@@ -23,7 +23,7 @@ class LicenseController extends Controller
         }
         $version = Release::orderBy('version', 'desc')->first()->version;
         $date_s = date("d.m.Y");
-        $date_e = date("d.m.Y", mktime(0, 0, 0, date("m"), date("d") + 7, date("Y")));
+        $date_e = date("d.m.Y", mktime(0, 0, 0, date("m"), date("d") + 28, date("Y")));
         $owner = Auth::user()->name . " <" . Auth::user()->email . ">\n";
         $crc = 'CRC=' . base64_encode($version . $owner) . "\n";
         $lic = "Price-Guru version $version. Registration key!\n" . $owner . $date_e . "\n" . $crc . "EndIdentyData";
