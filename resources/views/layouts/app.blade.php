@@ -22,7 +22,7 @@
 
     @production
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-55M25ZCESQ"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGSRRMMDH2"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
 
@@ -31,7 +31,7 @@
             }
             gtag('js', new Date());
 
-            gtag('config', 'G-55M25ZCESQ');
+            gtag('config', 'G-DGSRRMMDH2');
         </script>
     @endproduction
 
