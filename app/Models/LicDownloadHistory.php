@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Mail\LicenseGen;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class LicDownloadHistory extends Model
 {
@@ -15,7 +17,15 @@ class LicDownloadHistory extends Model
         'date',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($ldh) {
+            Mail::to(config('mail.contactAddress', "admin@admin.net"))->send(new LicenseGen($ldh->user));
+        });
     }
 }
