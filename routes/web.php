@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/get-fee-license', [LicenseController::class, 'make_free'])->name('lic_make_free');
+    Route::get('/get-fee-license', [LicenseController::class, 'gen'])->name('lic_make_free');
     Route::get('/users', UsersController::class)->name('users');
 });
 

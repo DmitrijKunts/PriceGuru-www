@@ -32,7 +32,7 @@ class LicenseGen extends Mailable
     {
         return $this
             ->subject('Заказана новая лицензия на сайте Price-Guru', $this->user->email)
-            ->from(config('mail.contactAddress', "admin@admin.net"))
+            ->from(config('mail.from'))
             ->view('mail.lic_order');
     }
 }

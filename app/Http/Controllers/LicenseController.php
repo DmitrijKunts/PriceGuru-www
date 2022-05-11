@@ -7,7 +7,7 @@ use App\Actions\GenLicense;
 class LicenseController extends Controller
 {
 
-    public function make_free()
+    public function gen()
     {
         [$res, $fileName] = GenLicense::gen();
 
