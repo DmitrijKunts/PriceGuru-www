@@ -1,6 +1,8 @@
-<h2>Привет!</h2> <br><br>
+@component('mail::message')
+    # Привет!
 
-Заказана новая лицензия на сайте Price-Guru<br><br>
+    Заказана новая лицензия на сайте Price-Guru
 
-Имя:  {{ $user->name }}<br>
-Email:  {{ $user->email }}<br><br>
+    Имя: {{ $user->name }}
+    Email: {{ $user->email }}
+@endcomponent

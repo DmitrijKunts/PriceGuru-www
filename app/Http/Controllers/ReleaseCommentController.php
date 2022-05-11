@@ -12,17 +12,6 @@ use Illuminate\Support\Facades\Mail;
 class ReleaseCommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Release $release)
-    {
-        // dd($release);
-        // return '111';
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -67,17 +56,6 @@ class ReleaseCommentController extends Controller
         });
 
         return redirect()->route('releases.show', [$c->release->version]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\ReleaseComment $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ReleaseComment $comment)
-    {
-        //
     }
 
     /**

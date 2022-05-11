@@ -2,25 +2,24 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class LicenseGen extends Mailable
+class Contact extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = (object)$data;
     }
 
     /**
@@ -30,8 +29,8 @@ class LicenseGen extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject('Заказана новая лицензия на сайте Price-Guru')
-            ->markdown('mail.lic_order');
+        return $this->subject($this->data->subject)
+            ->from($this->data->email, $this->data->name)
+            ->markdown('mail.contact');
     }
 }

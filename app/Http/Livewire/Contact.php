@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\Contact as MailContact;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -28,10 +29,8 @@ class Contact extends Component
     {
         $data = $this->validate();
 
-        Mail::send('mail.contact', $data, function ($message) {
-            $message->from($this->email);
-            $message->to(config('mail.contactAddress', "admin@admin.net"))->subject($this->subject, $this->name);
-        });
+        Mail::to(config('mail.contactAddress', "admin@admin.net"))->send(new MailContact($data));
+
         $this->reset();
         session()->flash('message', 'Ваше сообщение отправлено');
     }
