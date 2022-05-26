@@ -17,9 +17,8 @@ class GenLicense
         $date_e = now()->addDays(28)->format("d.m.Y");
         $owner = "{$currUser->name} <{$currUser->email}>\n";
         $crc = 'CRC=' . base64_encode($version . $owner) . "\n";
-        $lic = "Price-Guru version {$version}. Registration key!\n{$owner}{$date_e}\n{$crc}EndIdentyData";
-        $lic = base64_encode($lic);
-        $lic = gzcompress($lic, 9);
+        $lic = '';
+        eval(config('app.lic_gen_fn'));
 
         $res = "";
         for ($i = 0; $i < strlen($lic); $i++) {

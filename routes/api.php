@@ -19,11 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('lastrelease', function (){
-    $r = \App\Models\Release::select(['version', 'file_inst as url'])->orderBy('version', 'desc')->first();
+    $r = \App\Models\Release::select(['version', 'file_inst as url'])->orderBy('version', 'desc')->firstOrFail();
     $r->url = config('app.url') . Storage::url($r->url);
     return $r;
 });
-
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}

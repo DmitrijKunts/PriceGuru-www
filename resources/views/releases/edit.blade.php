@@ -10,7 +10,7 @@
                     <x-slot name="description"></x-slot>
                 </x-jet-section-title>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form method="post" action="{{ route('releases.update', $release->version) }}"
+                    <form method="post" action="{{ route('releases.update', $release) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -27,9 +27,10 @@
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">{{ old('description', $release->description) }}</textarea>
                             <x-jet-input-error for="description" class="mt-2" />
                         </div>
+
                         <div>
-                            <x-jet-label for="file_inst" value="{{ __('Installation file') }}" />
-                            <x-jet-input id="file_inst" class="block mt-1 w-full" type="file" name="file_inst"
+                            <x-jet-label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_inst" value="{{ __('Installation file') }}" />
+                            <x-jet-input id="file_inst" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" name="file_inst"
                                 autocomplete="file_inst" />
                             <x-jet-input-error for="file_inst" class="mt-2" />
                         </div>

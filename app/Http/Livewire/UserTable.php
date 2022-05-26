@@ -36,7 +36,6 @@ class UserTable extends DataTableComponent
 
     public function query(): Builder
     {
-        // dd(User::withCount('licDownloadHistories')->toSql());
         return User::withCount('licDownloadHistories');
     }
 

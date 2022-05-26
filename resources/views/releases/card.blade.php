@@ -21,7 +21,7 @@
                                     </path>
                                 </svg>
                                 <a class="font-medium text-indigo-600 hover:text-indigo-500"
-                                    href="{{ route('releases.show', $release->version) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
+                                    href="{{ route('releases.show', $release) }}">{{ __('Read comments') . ' (' . count($release->comments) . ')' }}</a>
 
                             </div>
                         @else
@@ -33,7 +33,7 @@
                                     </path>
                                 </svg>
                                 <a class="font-medium text-indigo-600 hover:text-indigo-500"
-                                    href="{{ route('releases.comments.create', $release->version) }}">{{ __('Add comment') }}</a>
+                                    href="{{ route('releases.comments.create', $release) }}">{{ __('Add comment') }}</a>
 
                             </div>
                         @endif
@@ -43,14 +43,24 @@
                 <div class="flex flex-wrap">
                     @can('release-master')
                         <div class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                            <a href="{{ route('releases.edit', $release->version) }}"
+                            <a href="{{ route('releases.edit', $release) }}"
                                 class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-green-700">
                                 Редактировать
                             </a>
                         </div>
+                        <form class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6"
+                            action="{{ route('releases.destroy', $release) }}" method="POST"
+                            onsubmit="return confirm('Are you sure?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit"
+                                class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                                {{ __('Delete') }}
+                            </button>
+                        </form>
                     @endcan
                     <div class="flex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                        <a href="{{ route('releases.show', $release->version) }}"
+                        <a href="{{ route('releases.show', $release) }}"
                             class="w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-green-700">
                             Описание версии
                         </a>
@@ -125,12 +135,19 @@
  c0-4.571,3.706-8.276,8.276-8.276c4.57,0,8.275,3.706,8.275,8.276C18.275,12.543,17.126,14.816,15.32,16.335z"
                                                     clip-rule="evenodd" />
                                             </svg>
-                                            <span
-                                                class="ml-2 flex-1 w-0 truncate">{{ \App\Models\Release::humanSize($release->file_inst) }}</span>
+                                            <span class="ml-2 flex-1 w-0 truncate">
+                                                {{ $release->file_inst_size }}
+                                            </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
                                             <a href="{{ Storage::url($release->file_inst) }}"
-                                                class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
                                                 Загрузить
                                             </a>
                                         </div>
@@ -165,11 +182,19 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                             <span
-                                                class="ml-2 flex-1 w-0 truncate">{{ \App\Models\Release::humanSize($release->file_arc) }}</span>
+                                                class="ml-2 flex-1 w-0 truncate">
+                                                {{ $release->file_arc_size }}
+                                            </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
                                             <a href="{{ Storage::url($release->file_arc) }}"
-                                                class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
                                                 Загрузить
                                             </a>
                                         </div>

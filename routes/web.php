@@ -8,16 +8,6 @@ use App\Http\Controllers\VideoController;
 use App\Http\Livewire\Contact;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     $release = \App\Models\Release::orderBy('created_at', 'desc')->first();
@@ -32,17 +22,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/users', UsersController::class)->name('users');
 });
 
-Route::resource('releases', ReleaseController::class);
+Route::resource('releases', ReleaseController::class)
+    ->scoped(['release' => 'version']);
 
 Route::get('/videos', VideoController::class)->name('videos');
 Route::get('/contact', Contact::class)->name('contact');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('releases/{release}/comments/create', [ReleaseCommentController::class, 'create'])->name('releases.comments.create');
-Route::resource('releases.comments', ReleaseCommentController::class)->only([
-    'create', 'store', 'edit', 'update', 'destroy',
-])->shallow();
-
-
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
+Route::middleware(['auth:sanctum', 'verified'])
+    ->resource('releases.comments', ReleaseCommentController::class)
+    ->only(['create', 'store', 'destroy',])
+    ->shallow();

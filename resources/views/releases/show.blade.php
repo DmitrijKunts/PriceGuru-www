@@ -20,13 +20,13 @@
                     </div>
                     @can('release-master')
                         <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                            <a href="{{ route('releases.edit', $release->version) }}"
+                            <a href="{{ route('releases.edit', $release) }}"
                                 class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                                 {{ __('Edit') }}
                             </a>
                         </div>
                         <div class="flsex-1 inline-flex rounded-md shadow inline-block mx-4 my-5 sm:mx-6">
-                            <form class="inline-block" action="{{ route('releases.destroy', $release->version) }}"
+                            <form class="inline-block" action="{{ route('releases.destroy', $release) }}"
                                 method="POST" onsubmit="return confirm('Are you sure?');">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -84,7 +84,13 @@
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
                                                 <a href="{{ Storage::url($release->file_inst) }}"
-                                                    class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
                                                     Загрузить
                                                 </a>
                                             </div>
@@ -104,7 +110,13 @@
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
                                                 <a href="{{ Storage::url($release->file_arc) }}"
-                                                    class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
                                                     Загрузить
                                                 </a>
                                             </div>

@@ -15,65 +15,44 @@ class ReleaseTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $data = [
-        'version' => 20,
-        'description' => 'First version update',
-    ];
-
     public function test_index_200()
     {
-        $response = $this->get(route('releases.index'));
-
-        $response->assertStatus(200);
+        $this->get(route('releases.index'))->assertStatus(200);
     }
 
     public function test_create_guest()
     {
-        $response = $this->get(route('releases.create'));
-
-        $response->assertForbidden();
+        $this->get(route('releases.create'))->assertForbidden();
     }
 
     public function test_create_user()
     {
         $user = User::factory()->make(['id' => 2]);
-        // dd($user);
-        // $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->get(route('releases.create'));
-
-        $response->assertForbidden();
+        $this->actingAs($user)
+            ->get(route('releases.create'))
+            ->assertForbidden();
     }
 
     public function test_create_admin()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->get(route('releases.create'));
-
-        $response->assertOk();
+        $this->actingAs($user)
+            ->get(route('releases.create'))
+            ->assertOk();
     }
 
-    // public function test_store_get()
-    // {
-    //     $this->get(route('releases.store'))->assertNotFound();
-    // }
 
     public function test_store_guest()
     {
-        $response = $this->post(route('releases.store'));
-
-        $response->assertForbidden();
+        $this->post(route('releases.store'))->assertForbidden();
     }
 
     public function test_store_user()
     {
+        User::factory()->create();
         $user = User::factory()->create();
-        $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->post(route('releases.store'), [
-            'version' => 112,
-            'description' => 'required',
-            'file_inst' => UploadedFile::fake()->create('file2.exe', 2999),
-            'file_arc' => UploadedFile::fake()->create('arc2.zip', 2999),
-        ]);
+        $r = Release::factory()->definition();
+        $response = $this->actingAs($user)->post(route('releases.store'), $r);
 
         $response->assertForbidden();
     }
@@ -111,43 +90,49 @@ class ReleaseTest extends TestCase
     public function test_show()
     {
         $this->addRelease();
-        $response = $this->get(route('releases.show', 5));
-        $response->assertOk()->assertSee('First version');
+        $this->get(route('releases.show', 5))
+            ->assertOk()
+            ->assertSee('First version');
     }
 
     public function test_show_bad_version()
     {
         $this->addRelease();
-        $response = $this->get(route('releases.show', 10));
-        $response->assertNotFound();
+        $this->get(route('releases.show', 10))->assertNotFound();
     }
 
 
     public function test_edit_guest()
     {
-        $response = $this->get(route('releases.edit', 5));
+        User::factory()->create();
+        $this->get(route('releases.edit', 5))->assertNotFound();
 
-        $response->assertForbidden();
+        Release::factory()->create(['version' => 5]);
+        $this->get(route('releases.edit', 5))
+            ->assertForbidden();
     }
 
     public function test_edit_user()
     {
+        User::factory()->create();
         $user = User::factory()->create();
-        $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->get(route('releases.edit', 5));
-
-        $response->assertForbidden();
+        Release::factory()->create(['version' => 5]);
+        $this->actingAs($user)
+            ->get(route('releases.edit', 5))
+            ->assertForbidden();
     }
 
     public function test_edit_admin()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->get(route('releases.edit', 5));
-        $response->assertNotFound();
+        $this->actingAs($user)
+            ->get(route('releases.edit', 5))
+            ->assertNotFound();
 
-        [$file_inst, $file_arc, $response] = $this->addRelease($user);
-        $response = $this->actingAs($user, 'web')->get(route('releases.edit', 5));
-        $response->assertOk();
+        Release::factory()->create(['version' => 5]);
+        $this->actingAs($user)
+            ->get(route('releases.edit', 5))
+            ->assertOk();
     }
 
 
@@ -159,29 +144,32 @@ class ReleaseTest extends TestCase
 
     public function test_update_guest()
     {
-
-        $response = $this->put(route('releases.update', 5), $this->data);
-
-        $response->assertForbidden();
+        $r = Release::factory()->create(['version' => 5]);
+        $this->put(route('releases.update', 5), $r->getAttributes())->assertForbidden();
     }
 
     public function test_update_user()
     {
+        User::factory()->create();
         $user = User::factory()->create();
-        $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->put(route('releases.update', 5));
-
-        $response->assertForbidden();
+        Release::factory()->create(['version' => 5]);
+        $this->actingAs($user)
+            ->put(route('releases.update', 5))
+            ->assertForbidden();
     }
 
     public function test_update_admin()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->put(route('releases.update', 1));
-        $response->assertNotFound();
+        $this->actingAs($user)
+            ->put(route('releases.update', 1))
+            ->assertNotFound();
 
-        [$file_inst, $file_arc, $response] = $this->addRelease($user);
-        $this->actingAs($user, 'web')->put(route('releases.update', 5), $this->data);
+        $r = Release::factory()->create(['version' => 5]);
+        $d = $r->getAttributes();
+        $d['description'] = 'First version update';
+        $d['version'] = 20;
+        $this->actingAs($user)->put(route('releases.update', 5), $d);
         $this->assertTrue($rel = Release::where('version', 20)->count() == 1);
         $this->assertTrue(Release::where('version', 20)->first()->description == 'First version update');
     }
@@ -195,28 +183,29 @@ class ReleaseTest extends TestCase
 
     public function test_destroy_guest()
     {
-        $response = $this->delete(route('releases.destroy', 5), $this->data);
-
-        $response->assertForbidden();
+        $r = Release::factory()->create(['version' => 5]);
+        $this->delete(route('releases.destroy', 5), $r->getAttributes())->assertForbidden();
     }
 
     public function test_destroy_user()
     {
+        User::factory()->create();
         $user = User::factory()->create();
-        $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->delete(route('releases.destroy', 5));
-
-        $response->assertForbidden();
+        Release::factory()->create(['version' => 5]);
+        $this->actingAs($user)
+            ->delete(route('releases.destroy', 5))
+            ->assertForbidden();
     }
 
     public function test_destroy_admin()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user, 'web')->delete(route('releases.destroy', 1));
-        $response->assertNotFound();
+        $this->actingAs($user)
+            ->delete(route('releases.destroy', 1))
+            ->assertNotFound();
 
-        [$file_inst, $file_arc, $response] = $this->addRelease($user);
-        $this->actingAs($user, 'web')->delete(route('releases.destroy', 5))->assertRedirect(route('releases.index'));
-        $this->assertTrue($rel = Release::where('version', 5)->count() == 0);
+        Release::factory()->create(['version' => 5]);
+        $this->actingAs($user)->delete(route('releases.destroy', 5))->assertRedirect(route('releases.index'));
+        $this->assertTrue(Release::where('version', 5)->count() == 0);
     }
 }

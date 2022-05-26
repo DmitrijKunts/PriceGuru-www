@@ -18,6 +18,16 @@ class Release extends Model
         'file_arc',
     ];
 
+    public function getFileInstSizeAttribute()
+    {
+        return self::humanSize($this->file_inst);
+    }
+
+    public function getFileArcSizeAttribute()
+    {
+        return self::humanSize($this->file_arc);
+    }
+
     static public function humanSize($file)
     {
         if (!Storage::exists($file)) return 0;
