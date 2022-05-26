@@ -31,4 +31,5 @@ Route::get('/contact', Contact::class)->name('contact');
 Route::middleware(['auth:sanctum', 'verified'])
     ->resource('releases.comments', ReleaseCommentController::class)
     ->only(['create', 'store', 'destroy',])
+    ->scoped(['release' => 'version'])
     ->shallow();
